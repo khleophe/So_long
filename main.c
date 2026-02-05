@@ -6,13 +6,13 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:22:48 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/04 16:05:41 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/05 17:22:34 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-#include <mlx.h>
+//#include <mlx.h>
 
 typedef struct	s_data {
 	void	*img;
@@ -32,7 +32,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int	main(void)
 {
-	void	*mlx;
+	/*void	*mlx;
 	void	*mlx_win;
 	t_data	img;
 
@@ -43,5 +43,6 @@ int	main(void)
 								&img.endian);
 	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	mlx_loop(mlx);*/
+	
 }

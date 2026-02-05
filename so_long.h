@@ -6,22 +6,24 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:18:06 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/05 14:46:07 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/05 17:07:31 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include <mlx.h>
+# include "Libft/libft.h"
 
-typedef struct  s_map
+# define EMPTY_SPACE '0'
+# define WALL '1'
+# define COLLECTIBLE 'C'
+# define MAP_EXIT 'E'
+# define STARTING_POS 'P'
+
+typedef struct s_game
 {
-    char    empty_space;
-    char    wall;
-    char    collectible;
-    char    exit;
-    char    starting_position;
-}           t_map;
+    char    **map;
+}           t_game;
 
 #endif

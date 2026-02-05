@@ -1,5 +1,6 @@
 
 SRCS        = ./main.c\
+			./parsing.c\
 
 OBJS        = $(SRCS:.c=.o)
 
