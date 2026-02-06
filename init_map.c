@@ -6,7 +6,7 @@
 /*   By: soraya <soraya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 10:52:03 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/06 17:08:40 by soraya           ###   ########.fr       */
+/*   Updated: 2026/02/06 17:15:12 by soraya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int  count_line(char *argv)
     if (fd_map == -1)
     {
         perror("Error\nFile couldn't be opened");
-        return ;
+        return (-1);
     }
     while ((temp = get_next_line(fd_map))!= NULL)
     {
@@ -42,11 +42,11 @@ void    read_map(char *argv, t_game *game)
 
     i = 0;
     nb_line = count_line(argv);
-    game->map = malloc(sizeof (char*) * (count_line + 1));
+    game->map = malloc(sizeof (char*) * (nb_line + 1));
     if (!game->map)
         return ;
     fd_map = open(argv, O_RDONLY);
-    while (i < count_line)
+    while (i < nb_line)
     {
        game->map[i] = get_next_line(fd_map);
        i++;
