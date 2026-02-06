@@ -3,18 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: soraya <soraya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:22:48 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/06 10:50:48 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/06 16:21:08 by soraya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
-int	main(void)
+//main de test
+int main(int argc, char **argv)
 {
-	
-	
+    t_game  game;
+    int     i;
+
+    if (argc != 2)
+        return (printf("Usage: ./a.out <map.ber>\n"), 1);
+    game.map = NULL;
+
+    printf("--- Test de lecture ---\n");
+    read_map(argv[1], &game);
+
+    if (game.map)
+    {
+        printf("Succès ! Voici le contenu de game.map :\n");
+        i = 0;
+        while (game.map[i])
+        {
+            printf("Ligne [%d] : %s\n", i, game.map[i]);
+            i++;
+        }
+    }
+    else
+        printf("Échec : game.map est NULL\n");
+    return (0);
 }

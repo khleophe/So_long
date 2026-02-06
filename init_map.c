@@ -3,31 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: soraya <soraya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 10:52:03 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/06 11:54:24 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/06 17:08:40 by soraya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char    *read_map(char *argv)
+static int  count_line(char *argv)
 {
-    char    *line;
-    char    *all_file;
+    int     count_line;
     int     fd_map;
+    char    *temp;
 
-    fd_map = open(argv[1], O_RDONLY);
-    if (fd == - 1)
+    count_line = 0;
+    fd_map = open(argv, O_RDONLY);
+    if (fd_map == -1)
     {
-        perror("Error\nFile couldn't be openened");
-        return (NULL);
+        perror("Error\nFile couldn't be opened");
+        return ;
     }
-    line = get_next_line(fd_map);
-    while (line != NULL)
+    while ((temp = get_next_line(fd_map))!= NULL)
     {
-        
+        count_line++;
+        free(temp);
     }
-
+    close(fd_map);
+    return (count_line);
 }
+
+void    read_map(char *argv, t_game *game)
+{
+    int     nb_line;
+    int     fd_map;
+    int     i;
+
+    i = 0;
+    nb_line = count_line(argv);
+    game->map = malloc(sizeof (char*) * (count_line + 1));
+    if (!game->map)
+        return ;
+    fd_map = open(argv, O_RDONLY);
+    while (i < count_line)
+    {
+       game->map[i] = get_next_line(fd_map);
+       i++;
+    }
+    game->map[i] = NULL;
+    close(fd_map);
+}    

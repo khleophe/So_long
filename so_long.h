@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: soraya <soraya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:18:06 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/06 11:45:01 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/06 16:19:03 by soraya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,9 @@ typedef struct s_game
 {
     char    **map;
 }           t_game;
+
+// map
+
+void    read_map(char *argv, t_game *game);
 
 #endif
