@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soraya <soraya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:18:06 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/06 16:19:03 by soraya           ###   ########.fr       */
+/*   Updated: 2026/02/09 17:58:14 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define SO_LONG_H
 
 # include "Libft/libft.h"
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdio.h>
 # include <errno.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <unistd.h>
 
 # define EMPTY_SPACE '0'
 # define WALL '1'
@@ -27,11 +27,19 @@
 
 typedef struct s_game
 {
-    char    **map;
-}           t_game;
+	char	**map;
+	int		width;
+	int		height;
+	int		nb_collectibles;
+}			t_game;
 
 // map
 
-void    read_map(char *argv, t_game *game);
+int			count_line(char *argv);
+void		read_map(char *argv, t_game *game);
+int			is_rectangular(t_game *game);
+int			check_walls(t_game *game);
+int			check_elements(t_game *game);
+int			check_char(t_game *game);
 
 #endif

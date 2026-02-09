@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soraya <soraya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:22:48 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/06 16:21:08 by soraya           ###   ########.fr       */
+/*   Updated: 2026/02/09 17:54:07 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int main(int argc, char **argv)
 
     printf("--- Test de lecture ---\n");
     read_map(argv[1], &game);
-
     if (game.map)
     {
         printf("Succès ! Voici le contenu de game.map :\n");
@@ -37,5 +36,11 @@ int main(int argc, char **argv)
     }
     else
         printf("Échec : game.map est NULL\n");
+        
+        is_rectangular(&game);
+        check_walls(&game);
+        check_elements(&game);
+        check_char(&game);
+
     return (0);
 }

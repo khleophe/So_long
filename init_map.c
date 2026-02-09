@@ -3,70 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soraya <soraya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 10:52:03 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/06 21:44:53 by soraya           ###   ########.fr       */
+/*   Updated: 2026/02/09 17:47:16 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int  count_line(char *argv)
+int	count_line(char *argv)
 {
-    int     count_line;
-    int     fd_map;
-    char    *temp;
+	int		count_line;
+	int		fd_map;
+	char	*temp;
 
-    count_line = 0;
-    fd_map = open(argv, O_RDONLY);
-    if (fd_map == -1)
-    {
-        perror("Error\nFile couldn't be opened");
-        return (-1);
-    }
-    while ((temp = get_next_line(fd_map))!= NULL)
-    {
-        count_line++;
-        free(temp);
-    }
-    close(fd_map);
-    return (count_line);
+	count_line = 0;
+	fd_map = open(argv, O_RDONLY);
+	if (fd_map == -1)
+	{
+		ft_putstr("Error\nFile couldn't be opened\n");
+		return (-1);
+	}
+	while ((temp = get_next_line(fd_map)) != NULL)
+	{
+		count_line++;
+		free(temp);
+	}
+	close(fd_map);
+	return (count_line);
 }
-static void removed_newline(t_game *game)
+static void	removed_newline(t_game *game)
 {
-    int     i;
-    char    len;
+	int		i;
+	char	len;
 
-    len = 0;
-    i = 0;
-    while (game->map[i])
-    {
-        len = ft_strlen(game->map[i]);
-        if (len > 0 && game->map[i][len - 1] == '\n')
-            game->map[i][len -1] = '\0';
-        i++;
-    }
+	len = 0;
+	i = 0;
+	while (game->map[i])
+	{
+		len = ft_strlen(game->map[i]);
+		if (len > 0 && game->map[i][len - 1] == '\n')
+			game->map[i][len - 1] = '\0';
+		i++;
+	}
 }
-void    read_map(char *argv, t_game *game)
+void	read_map(char *argv, t_game *game)
 {
-    int     nb_line;
-    int     fd_map;
-    int     i;
+	int	nb_line;
+	int	fd_map;
+	int	i;
 
-    i = 0;
-    nb_line = count_line(argv);
-    game->map = malloc(sizeof (char*) * (nb_line + 1));
-    if (!game->map)
-        return ;
-    fd_map = open(argv, O_RDONLY);
-    while (i < nb_line)
-    {
-       game->map[i] = get_next_line(fd_map);
-       removed_newline(game);
-       printf("%zu\n", ft_strlen(game->map[i]));
-       i++;
-    }
-    game->map[i] = NULL;
-    close(fd_map);
-}    
+	i = 0;
+	nb_line = count_line(argv);
+	game->map = malloc(sizeof(char *) * (nb_line + 1));
+	if (!game->map)
+		return ;
+	fd_map = open(argv, O_RDONLY);
+	while (i < nb_line)
+	{
+		game->map[i] = get_next_line(fd_map);
+		i++;
+	}
+	game->map[i] = NULL; 
+    removed_newline(game);
+	game->width = ft_strlen(game->map[0]);
+	close(fd_map);
+}
