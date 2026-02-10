@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: soraya <soraya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:18:06 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/10 16:41:58 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/10 21:29:08 by soraya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ int			check_walls(t_game *game);
 int			check_elements(t_game *game);
 int			check_char(t_game *game);
 int			check_args(int argc, char *argv);
+int 		check_flood(t_game *game);
 
 
-char **temporary_map(t_game *game);
+void	ft_putstr(char *str);
 
 #endif

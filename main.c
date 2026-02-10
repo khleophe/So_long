@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: soraya <soraya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:22:48 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/10 16:42:36 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/10 22:37:01 by soraya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int main(int argc, char **argv)
         check_walls(&game);
         check_elements(&game);
         check_char(&game);
-        temporary_map(&game);
+        check_flood(&game);
     return (0);
 }
