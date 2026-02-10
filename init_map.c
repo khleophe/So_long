@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 10:52:03 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/09 17:47:16 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/10 15:59:05 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	count_line(char *argv)
 
 	count_line = 0;
 	fd_map = open(argv, O_RDONLY);
-	if (fd_map == -1)
+		if (fd_map == -1)
 	{
 		ft_putstr("Error\nFile couldn't be opened\n");
 		return (-1);

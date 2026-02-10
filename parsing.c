@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 14:21:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/09 17:58:02 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/10 16:29:29 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ int	is_rectangular(t_game *game)
 
 	i = 0;
 	len = 0;
-	/*if (!game->map || !game->map[i])
-	{
-		write(1, "Error, map is empty\n", 19);
-		return (1);
-	}*/
 	while (game->map[i])
 	{
 		len = ft_strlen(game->map[i]);
@@ -66,23 +61,33 @@ int	check_walls(t_game *game)
 }
 int	check_elements(t_game *game)
 {
-	int	i;
+	int	x;
+	int	y;
 	int	start_position;
 	int	exit;
 
-	i = 0;
+	y = 0;
 	start_position = 0;
 	exit = 0;
 	game->nb_collectibles = 0;
-	while (game->map[i])
+	while (y < game->height)
 	{
-		if (ft_strchr(game->map[i], 'P'))
-			start_position++;
-		if (ft_strchr(game->map[i], 'E'))
-			exit++;
-		if (ft_strchr(game->map[i], 'C'))
-			game->nb_collectibles++;
-		i++;
+		x = 0;
+		while (x < game->width)
+		{
+			if (game->map[y][x] == 'P')
+			{
+				start_position++;
+				game->pos_x = x;
+				game->pos_y = y;
+			}
+			else if (game->map[y][x] == 'E')
+				exit++;
+			else if (game->map[y][x] == 'C')
+				game->nb_collectibles++;
+			x++;
+		}
+		y++;
 	}
 	if (start_position != 1 || exit != 1 || game->nb_collectibles < 1)
 	{
@@ -95,7 +100,7 @@ int	check_elements(t_game *game)
 int	check_char(t_game *game)
 {
 	int	i;
-    int y;
+	int	y;
 
 	i = 0;
 	while (game->map[i])
@@ -114,5 +119,23 @@ int	check_char(t_game *game)
 		}
 		i++;
 	}
+	return (0);
+}
+int	check_args(int argc, char *argv)
+{
+	int	len;
+	int	i;
+
+	i = 0;
+	if (argc != 2)
+	{
+		ft_putstr("Error\nNot the right number of arguments. It should be two\n");
+		return (1);
+	}
+	/*if (fonction ".ber")
+	{
+		ft_putstr("Error\nNot the right map format, it should be .ber\n");
+		return (1);
+	}*/
 	return (0);
 }

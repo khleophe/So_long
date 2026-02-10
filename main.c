@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:22:48 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/09 17:54:07 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/10 16:42:36 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@ int main(int argc, char **argv)
     t_game  game;
     int     i;
 
-    if (argc != 2)
-        return (printf("Usage: ./a.out <map.ber>\n"), 1);
-    game.map = NULL;
-
-    printf("--- Test de lecture ---\n");
+    check_args(argc, argv[1]);
     read_map(argv[1], &game);
     if (game.map)
     {
@@ -36,11 +32,10 @@ int main(int argc, char **argv)
     }
     else
         printf("Échec : game.map est NULL\n");
-        
         is_rectangular(&game);
         check_walls(&game);
         check_elements(&game);
         check_char(&game);
-
+        temporary_map(&game);
     return (0);
 }
