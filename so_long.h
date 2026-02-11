@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:18:06 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/11 14:05:32 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/11 16:09:00 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			is_rectangular(t_game *game);
 int			check_walls(t_game *game);
 int			check_elements(t_game *game);
 int			check_char(t_game *game);
-int			check_args(int argc, char *argv);
+int			check_args(int argc);
 int			check_flood(t_game *game);
 int			resolve_parsing(t_game *game, int argc, char *argv);
 

@@ -1,5 +1,10 @@
 
-SRCS        = 
+SRCS        = ./main.c\
+			./init_map.c\
+			./parsing.c\
+			./flood_filling.c\
+			./resolve_parsing.c\
+
 
 OBJS        = $(SRCS:.c=.o)
 
@@ -7,7 +12,7 @@ CC            = cc
 CFLAGS        = -Wall -Wextra -Werror
 NAME        = so_long
 
-LIBFT_DIR    = ./libft
+LIBFT_DIR    = ./Libft
 LIBFT        = $(LIBFT_DIR)/libft.a
 
 MLX_DIR        = ./minilibx-linux
@@ -19,21 +24,21 @@ RM            = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-    $(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 
 %.o: %.c
-    $(CC) $(CFLAGS) -I. -I$(LIBFT_DIR) -I$(MLX_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I. -I$(LIBFT_DIR) -I$(MLX_DIR) -c $< -o $@
 
 $(LIBFT):
-    make -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR)
 
 clean:
-    $(RM) $(OBJS)
-    make clean -C $(LIBFT_DIR)
+	$(RM) $(OBJS)
+	make clean -C $(LIBFT_DIR)
 
 fclean: clean
-    $(RM) $(NAME)
-    make fclean -C $(LIBFT_DIR)
+	$(RM) $(NAME)
+	make fclean -C $(LIBFT_DIR)
 
 re: fclean all
 

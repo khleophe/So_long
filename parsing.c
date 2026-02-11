@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 14:21:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/11 13:47:15 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/11 16:08:39 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,8 @@ int	check_char(t_game *game)
 	}
 	return (0);
 }
-int	check_args(int argc, char *argv)
+int	check_args(int argc)
 {
-	int	len;
 	int	i;
 
 	i = 0;
