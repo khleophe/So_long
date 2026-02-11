@@ -1,22 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/04 15:22:48 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/11 13:46:57 by sdabbas          ###   ########.fr       */
+/*   Created: 2026/02/11 13:53:01 by sdabbas           #+#    #+#             */
+/*   Updated: 2026/02/11 13:53:08 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
-{
-	t_game game;
-
-	game.map = NULL;
-	resolve_parsing(&game, argc, argv[1]);
-	return (0);
-}

@@ -1,6 +1,5 @@
 
-SRCS        =    ./main.c\
-                ./init_map.c\
+SRCS        = 
 
 OBJS        = $(SRCS:.c=.o)
 

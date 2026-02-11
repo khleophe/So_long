@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 14:21:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/10 16:29:29 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/11 13:47:15 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	is_rectangular(t_game *game)
 		len = ft_strlen(game->map[i]);
 		if (len != game->width)
 		{
-			write(1, "Error, map is not rectangular\n", 29);
+			ft_putstr("Error\nMap is not rectangular\n");
 			return (1);
 		}
 		i++;
