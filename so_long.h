@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:18:06 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/11 16:09:00 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/12 19:00:46 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include <mlx.h>
 
 # define EMPTY_SPACE '0'
 # define WALL '1'
 # define COLLECTIBLE 'C'
 # define MAP_EXIT 'E'
 # define STARTING_POS 'P'
+# define WINDOW_WIDTH 600
+# define WINDOW_HEIGHT 300
 
 typedef struct s_game
 {
@@ -39,8 +43,7 @@ typedef	struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	
-
+	t_game	game;
 }		t_data;
 
 
@@ -55,6 +58,8 @@ int			check_char(t_game *game);
 int			check_args(int argc);
 int			check_flood(t_game *game);
 int			resolve_parsing(t_game *game, int argc, char *argv);
+
+int			init_game(t_data *data);
 
 // game
 

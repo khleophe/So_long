@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:22:48 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/11 13:46:57 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/12 18:46:35 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 int	main(int argc, char **argv)
 {
-	t_game game;
+	t_game	game;
+	t_data	data;
 
+	data.mlx_ptr = NULL;
+	data.mlx_ptr = NULL;
 	game.map = NULL;
 	resolve_parsing(&game, argc, argv[1]);
+	init_game(&data);
+	// free tt si fct renvoie 1;
 	return (0);
 }
