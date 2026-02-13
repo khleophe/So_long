@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:22:48 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/12 18:46:35 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/13 20:02:07 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int	main(int argc, char **argv)
 	resolve_parsing(&game, argc, argv[1]);
 	init_game(&data);
 	// free tt si fct renvoie 1;
+	init_asset(&data);
 	return (0);
 }

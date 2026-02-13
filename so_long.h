@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:18:06 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/12 19:00:46 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/13 19:07:40 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,35 @@ typedef struct s_game
 	int		pos_y;
 }			t_game;
 
+typedef	struct s_img
+{
+
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		img_h;
+	int		img_w;
+	
+}		t_img;
+
 typedef	struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_game	game;
+	t_img	wall;
+	t_img	floor;
+	t_img	star;
+	t_img	player_1;
+	t_img	player_2;
+	t_img	exit;
+	t_img	big;
 }		t_data;
+
+
+
 
 
 // map
@@ -59,9 +82,10 @@ int			check_args(int argc);
 int			check_flood(t_game *game);
 int			resolve_parsing(t_game *game, int argc, char *argv);
 
-int			init_game(t_data *data);
-
 // game
+
+int			init_game(t_data *data);
+void		init_asset(t_data *data);
 
 
 
