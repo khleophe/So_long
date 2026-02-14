@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:18:06 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/13 19:07:40 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/14 16:13:07 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@
 # define COLLECTIBLE 'C'
 # define MAP_EXIT 'E'
 # define STARTING_POS 'P'
-# define WINDOW_WIDTH 600
-# define WINDOW_HEIGHT 300
 
 typedef struct s_game
 {
@@ -41,15 +39,13 @@ typedef struct s_game
 
 typedef	struct s_img
 {
-
 	void	*mlx_img;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
 	int		img_h;
-	int		img_w;
-	
+	int		img_w;	
 }		t_img;
 
 typedef	struct s_data
@@ -86,6 +82,7 @@ int			resolve_parsing(t_game *game, int argc, char *argv);
 
 int			init_game(t_data *data);
 void		init_asset(t_data *data);
+void    	put_img(t_data *data);
 
 
 

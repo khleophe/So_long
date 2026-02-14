@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 13:53:01 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/13 20:04:25 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/14 16:18:56 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,24 @@ int init_game(t_data *data)
     if (!data->mlx_ptr)
     {
         ft_putstr("Error\nNo mlx pointer\n");
-        return (0); 
-    }  // msg d'erreur peut etre
-    data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "so_long");
+        return (1); 
+    }
+    data->win_ptr = mlx_new_window(data->mlx_ptr, data->game.width * 60, data->game.height * 60, "so_long");
     if (!data->win_ptr)
     {  
         ft_putstr("Error\nCouldn't open the window\n");
-        return (0);
+        return (1);
     }
-    while (1) // remplacer par mlx_loop + mlx_*hook;
-        ; //ici pt s'arreter la fct init
+    return (0);
+}
+
+/*fct exit
     mlx_destroy_window(data->mlx_ptr, data->win_ptr);
     mlx_destroy_display(data->mlx_ptr);
     free(data->mlx_ptr);
     return (1);
-}
+}*/
+
 static void init_image(t_data *data, t_img *img, char *path)
 { 
     img->mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, path, &img->img_w, &img->img_h);
@@ -43,18 +46,67 @@ static void init_image(t_data *data, t_img *img, char *path)
     }
     img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp, &img->line_len, &img->endian);
 }
+
 void init_asset(t_data *data)
 {
-    
-    data->big.mlx_img = mlx_new_image(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
+    data->big.mlx_img = mlx_new_image(data->mlx_ptr, data->game.width * 60, data->game.height * 60); //nb de pixel
     if (!data->big.mlx_img)
         return ;
     data->big.addr = mlx_get_data_addr(data->big.mlx_img, &data->big.bpp, &data->big.line_len, &data->big.endian);
     init_image(data, &data->exit, "./images/treasure.xpm");
-    init_image(data,&data->floor, "./images/water.xpm");
+    init_image(data, &data->floor, "./images/water.xpm");
     init_image(data, &data->player_1, "./images/first_crab.xpm");
     init_image(data, &data->player_2, "./images/second_crab.xpm");
     init_image(data, &data->star, "./images/star.xpm");
-    init_image(data, &data->wall, "./images/wall.xpm");    
+    init_image(data, &data->wall, "./images/wall.xpm");
+}
+static void    put_pixel(t_data *data, t_img *img, int start_y, int start_x)
+{
+    int     x;
+    int     y;
+    int     color;
+    char    *dst;
+
+    y = 0;
+    while (y < img->img_h)
+    {
+        x = 0;
+        while (x < img->img_w)
+        {
+            color = *(int*)(img->addr + (y * img->line_len + x * (img->bpp / 8)));
+            dst = data->big.addr + (y + start_y) * data->big.line_len + (x + start_x) * (data->big.bpp / 8);
+            *(int *)dst = color;
+            x++;
+        }
+        y++;
+    }
+}
+
+void    put_img(t_data *data)
+{
+    int x_big;
+    int y_big;
+
+    y_big = 0;
+    while (y_big < data->game.height)
+    {
+        x_big = 0;
+        while (x_big < data->game.width)
+        {
+            if (data->game.map[y_big][x_big] == '1')
+                put_pixel(data, &data->wall, y_big * data->wall.img_h, x_big * data->wall.img_w);
+            if (data->game.map[y_big][x_big] == '0')
+                put_pixel(data, &data->floor, y_big * data->floor.img_h, x_big * data->floor.img_w);
+            if (data->game.map[y_big][x_big] == 'E')
+                put_pixel(data, &data->exit, y_big * data->exit.img_h, x_big * data->exit.img_w);
+            if (data->game.map[y_big][x_big] == 'P')
+                put_pixel(data, &data->player_1, y_big * data->player_1.img_h, x_big * data->player_1.img_w);
+            if (data->game.map[y_big][x_big] == 'C')
+                put_pixel(data, &data->star, y_big * data->star.img_h, x_big * data->star.img_w);
+            x_big++;
+        }
+        y_big++;
+    }
+    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->big.mlx_img, 0, 0);
 }
 
