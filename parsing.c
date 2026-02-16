@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 14:21:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/11 16:08:39 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/16 15:37:42 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	check_elements(t_game *game)
 	start_position = 0;
 	exit = 0;
 	game->nb_collectibles = 0;
+	game->count_collect = 0;
 	while (y < game->height)
 	{
 		x = 0;

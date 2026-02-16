@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 13:53:01 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/14 16:43:06 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/16 16:11:22 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@ int init_game(t_data *data)
     }
     return (0);
 }
-
-/*fct exit
-    mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-    mlx_destroy_display(data->mlx_ptr);
-    free(data->mlx_ptr);
-    return (1);
-}*/
 
 static void init_image(t_data *data, t_img *img, char *path)
 { 

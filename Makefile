@@ -5,6 +5,8 @@ SRCS        = ./main.c\
 			./flood_filling.c\
 			./resolve_parsing.c\
 			./init_graphic.c\
+			./keyhook.c\
+			./utils.c\
 
 
 OBJS        = $(SRCS:.c=.o)
