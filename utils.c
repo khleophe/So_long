@@ -6,15 +6,17 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:13:45 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/16 16:45:29 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/16 18:17:06 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "so_long.h"
 
 char	**freetab(char **dest, int i)
 {
     if (!dest)
         return (NULL);
-	while (i >= 0)
+    while (i >= 0)
 	{
         if (dest[i])
 		    free(dest[i]);

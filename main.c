@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:22:48 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/16 17:33:09 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/16 18:20:19 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int main(int argc, char **argv)
     mlx_hook(data.win_ptr, 17, 0, close_map, &data);
 	
     mlx_loop(data.mlx_ptr);
+    close_map(&data);
     return (0);
 }
