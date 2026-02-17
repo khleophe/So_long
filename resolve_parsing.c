@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 10:43:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/11 16:09:11 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/17 11:45:38 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**ft_freetab(t_game *game)
 
 int	resolve_parsing(t_game *game, int argc, char *argv)
 {
-	if (check_args(argc) != 0)
+	if (check_args(argc, &argv[1]) != 0)
 		return (1);
 	read_map(argv, game);
 	if (is_rectangular(game) != 0)

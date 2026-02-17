@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:00:01 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/16 17:29:35 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/17 14:28:57 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	**temporary_map(t_game *game)
 	int		i;
 	char	**temp_game;
 
-	temp_game = malloc(sizeof(char *) * game->height + 1);
+	temp_game = malloc(sizeof(char *) * (game->height + 1));
 	if (!temp_game)
 		return (NULL);
 	i = 0;
@@ -59,7 +59,7 @@ int	check_flood(t_game *game)
 			{
 				ft_putstr("Error\nMap invalid : inaccessible collectible or exit\n");
 				freetab(temp_map, game->height);
-				return (1);
+				exit (1);
 			}
 			j++;
 		}

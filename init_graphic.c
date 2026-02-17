@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 13:53:01 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/16 16:11:22 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/17 10:59:54 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int init_game(t_data *data)
 {
+    data->game.steps = 0;
     data->mlx_ptr = mlx_init();
     if (!data->mlx_ptr)
     {
@@ -33,10 +34,7 @@ static void init_image(t_data *data, t_img *img, char *path)
 { 
     img->mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, path, &img->img_w, &img->img_h);
     if (!img->mlx_img)
-    {
-        //ftc free ?
         return ;
-    }
     img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp, &img->line_len, &img->endian);
 }
 

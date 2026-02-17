@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 14:21:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/16 15:37:42 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/17 11:52:35 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,20 +122,22 @@ int	check_char(t_game *game)
 	}
 	return (0);
 }
-int	check_args(int argc)
+int	check_args(int argc, char *argv)
 {
 	int	i;
+	int	len;
 
+	len = ft_strlen(argv);
 	i = 0;
 	if (argc != 2)
 	{
 		ft_putstr("Error\nNot the right number of arguments. It should be two\n");
 		return (1);
 	}
-	/*if (fonction ".ber")
+	if (len <= 4 || ft_strncmp(argv + (len - 4), ".ber", 4) != 0)
 	{
 		ft_putstr("Error\nNot the right map format, it should be .ber\n");
 		return (1);
-	}*/
+	}
 	return (0);
 }

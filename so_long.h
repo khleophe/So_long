@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:18:06 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/16 17:35:55 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/17 11:52:27 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@
 # include "Libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
 # include <mlx.h>
-
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 # define EMPTY_SPACE '0'
 # define WALL '1'
@@ -46,9 +45,10 @@ typedef struct s_game
 	int		count_collect;
 	int		pos_x;
 	int		pos_y;
+	int		steps;
 }			t_game;
 
-typedef	struct s_img
+typedef struct s_img
 {
 	void	*mlx_img;
 	char	*addr;
@@ -56,10 +56,10 @@ typedef	struct s_img
 	int		line_len;
 	int		endian;
 	int		img_h;
-	int		img_w;	
-}		t_img;
+	int		img_w;
+}			t_img;
 
-typedef	struct s_data
+typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -71,7 +71,7 @@ typedef	struct s_data
 	t_img	player_2;
 	t_img	exit;
 	t_img	big;
-}		t_data;
+}			t_data;
 
 // map
 
@@ -81,7 +81,7 @@ int			is_rectangular(t_game *game);
 int			check_walls(t_game *game);
 int			check_elements(t_game *game);
 int			check_char(t_game *game);
-int			check_args(int argc);
+int			check_args(int argc, char *argv);
 int			check_flood(t_game *game);
 int			resolve_parsing(t_game *game, int argc, char *argv);
 
@@ -89,12 +89,12 @@ int			resolve_parsing(t_game *game, int argc, char *argv);
 
 int			init_game(t_data *data);
 void		init_asset(t_data *data);
-void    	put_img(t_data *data);
+void		put_img(t_data *data);
 int			key_hook(int key, t_data *data);
 
 // tools
 
-char	**freetab(char **dest, int i);
-int		close_map(t_data *data);
+char		**freetab(char **dest, int i);
+int			close_map(t_data *data);
 
 #endif
