@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 10:52:03 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/18 13:43:11 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/18 16:28:38 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ int	count_line(char *argv)
 	{
 		count_line++;
 		free(temp);
+		temp = get_next_line(fd_map);
 	}
+	free(temp);
 	close(fd_map);
 	return (count_line);
 }

@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 14:21:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/18 14:15:29 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/18 16:17:05 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	check_walls(t_game *game)
 {
 	int	i;
 
+	printf("%i, %i\n", game->width, game->height);
 	i = 0;
 	while (i < game->width - 1)
 	{
