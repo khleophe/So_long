@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 14:21:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/17 11:52:35 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/18 14:15:29 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	is_rectangular(t_game *game)
 		}
 		i++;
 	}
-	game->height = i;
 	return (0);
 }
 
@@ -59,6 +58,7 @@ int	check_walls(t_game *game)
 	}
 	return (0);
 }
+
 int	check_elements(t_game *game)
 {
 	int	x;
@@ -91,10 +91,7 @@ int	check_elements(t_game *game)
 		y++;
 	}
 	if (start_position != 1 || exit != 1 || game->nb_collectibles < 1)
-	{
-		ft_putstr("Error\nNot the correct amount of elements\n");
-		return (1);
-	}
+		return (ft_putstr("Error\nNot the correct amount of elements\n"), 1);
 	return (0);
 }
 
@@ -122,18 +119,12 @@ int	check_char(t_game *game)
 	}
 	return (0);
 }
-int	check_args(int argc, char *argv)
+
+int	check_args(char *argv)
 {
-	int	i;
 	int	len;
 
 	len = ft_strlen(argv);
-	i = 0;
-	if (argc != 2)
-	{
-		ft_putstr("Error\nNot the right number of arguments. It should be two\n");
-		return (1);
-	}
 	if (len <= 4 || ft_strncmp(argv + (len - 4), ".ber", 4) != 0)
 	{
 		ft_putstr("Error\nNot the right map format, it should be .ber\n");

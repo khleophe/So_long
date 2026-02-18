@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 10:52:03 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/17 13:39:52 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/18 13:43:11 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ int	count_line(char *argv)
 
 	count_line = 0;
 	fd_map = open(argv, O_RDONLY);
-		if (fd_map == -1)
+	if (fd_map == -1)
 	{
 		ft_putstr("Error\nFile couldn't be opened\n");
-		exit (-1);
+		exit(-1);
 	}
-	while ((temp = get_next_line(fd_map)) != NULL)
+	temp = get_next_line(fd_map);
+	while (temp != NULL)
 	{
 		count_line++;
 		free(temp);
@@ -33,6 +34,7 @@ int	count_line(char *argv)
 	close(fd_map);
 	return (count_line);
 }
+
 static void	removed_newline(t_game *game)
 {
 	int		i;
@@ -48,6 +50,7 @@ static void	removed_newline(t_game *game)
 		i++;
 	}
 }
+
 void	read_map(char *argv, t_game *game)
 {
 	int	nb_line;
@@ -57,6 +60,7 @@ void	read_map(char *argv, t_game *game)
 	i = 0;
 	nb_line = count_line(argv);
 	game->map = malloc(sizeof(char *) * (nb_line + 1));
+	game->height = nb_line;
 	if (!game->map)
 		return ;
 	fd_map = open(argv, O_RDONLY);
@@ -65,8 +69,8 @@ void	read_map(char *argv, t_game *game)
 		game->map[i] = get_next_line(fd_map);
 		i++;
 	}
-	game->map[i] = NULL; 
-    removed_newline(game);
+	game->map[i] = NULL;
+	removed_newline(game);
 	game->width = ft_strlen(game->map[0]);
 	close(fd_map);
 }

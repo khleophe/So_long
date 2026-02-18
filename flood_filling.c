@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:00:01 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/17 14:28:57 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/18 13:44:25 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	check_flood(t_game *game)
 		{
 			if (temp_map[i][j] == 'C' || temp_map[i][j] == 'E')
 			{
-				ft_putstr("Error\nMap invalid : inaccessible collectible or exit\n");
+				ft_putstr("Error\n: inaccessible collectible or exit\n");
 				freetab(temp_map, game->height);
-				exit (1);
+				return (1);
 			}
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:22:48 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/17 11:52:48 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/18 13:45:25 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 int	main(int argc, char **argv)
 {
-	t_data data;
+	t_data	data;
 
-	if (resolve_parsing(&data.game, argc, argv[1]) != 0)
+	if (argc != 2)
+	{
+		ft_putstr("Error\nNot the right number of arguments. It should be two\n");
+		return (1);
+	}
+	if (resolve_parsing(&data.game, argv[1]) != 0)
 		return (1);
 	init_game(&data);
 	init_asset(&data);
