@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 13:53:01 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/18 13:45:57 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/19 13:15:14 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,36 +81,31 @@ static void	put_pixel(t_data *data, t_img *img, int start_y, int start_x)
 	}
 }
 
-void	put_img(t_data *data)
+void	put_img(t_data *a, int x_big, int y_big)
 {
-	int	x_big;
-	int	y_big;
-
-	y_big = 0;
-	while (y_big < data->game.height)
+	while (y_big < a->game.height)
 	{
 		x_big = 0;
-		while (x_big < data->game.width)
+		while (x_big < a->game.width)
 		{
-			if (data->game.map[y_big][x_big] == '1')
-				put_pixel(data, &data->wall, y_big * data->wall.img_h, x_big
-					* data->wall.img_w);
-			if (data->game.map[y_big][x_big] == '0')
-				put_pixel(data, &data->floor, y_big * data->floor.img_h, x_big
-					* data->floor.img_w);
-			if (data->game.map[y_big][x_big] == 'E')
-				put_pixel(data, &data->exit, y_big * data->exit.img_h, x_big
-					* data->exit.img_w);
-			if (data->game.map[y_big][x_big] == 'P')
-				put_pixel(data, &data->player_1, y_big * data->player_1.img_h,
-					x_big * data->player_1.img_w);
-			if (data->game.map[y_big][x_big] == 'C')
-				put_pixel(data, &data->star, y_big * data->star.img_h, x_big
-					* data->star.img_w);
+			if (a->game.map[y_big][x_big] == '1')
+				put_pixel(a, &a->wall, y_big * a->wall.img_h, x_big
+					* a->wall.img_w);
+			if (a->game.map[y_big][x_big] == '0')
+				put_pixel(a, &a->floor, y_big * a->floor.img_h, x_big
+					* a->floor.img_w);
+			if (a->game.map[y_big][x_big] == 'E')
+				put_pixel(a, &a->exit, y_big * a->exit.img_h, x_big
+					* a->exit.img_w);
+			if (a->game.map[y_big][x_big] == 'P')
+				put_pixel(a, &a->player_1, y_big * a->player_1.img_h, x_big
+					* a->player_1.img_w);
+			if (a->game.map[y_big][x_big] == 'C')
+				put_pixel(a, &a->star, y_big * a->star.img_h, x_big
+					* a->star.img_w);
 			x_big++;
 		}
 		y_big++;
 	}
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->big.mlx_img, 0,
-		0);
+	mlx_put_image_to_window(a->mlx_ptr, a->win_ptr, a->big.mlx_img, 0, 0);
 }

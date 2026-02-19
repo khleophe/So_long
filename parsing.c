@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 14:21:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/18 16:17:05 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/19 13:08:01 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,11 @@ int	check_walls(t_game *game)
 	return (0);
 }
 
-int	check_elements(t_game *game)
+int	check_elements(t_game *game, int start_position, int x, int y)
 {
-	int	x;
-	int	y;
-	int	start_position;
 	int	exit;
 
-	y = 0;
-	start_position = 0;
 	exit = 0;
-	game->nb_collectibles = 0;
-	game->count_collect = 0;
 	while (y < game->height)
 	{
 		x = 0;

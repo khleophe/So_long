@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 13:01:54 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/18 13:31:59 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/19 13:12:33 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	player_move(t_data *data, int x, int y)
 		data->game.pos_y = new_position_y;
 		data->game.pos_x = new_position_x;
 		data->game.map[data->game.pos_y][data->game.pos_x] = 'P';
-		put_img(data);
+		put_img(data, 0, 0);
 	}
 	return (0);
 }

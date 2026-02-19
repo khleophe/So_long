@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:22:48 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/18 15:59:59 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/19 13:12:07 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	data.game.nb_collectibles = 0;
+	data.game.count_collect = 0;
 	if (argc != 2)
 	{
 		ft_putstr("Error\nNot the right number of arguments. It should be two\n");
@@ -25,7 +27,7 @@ int	main(int argc, char **argv)
 		return (1);
 	init_game(&data);
 	init_asset(&data);
-	put_img(&data);
+	put_img(&data, 0, 0);
 	mlx_hook(data.win_ptr, 2, 1L << 0, key_hook, &data);
 	mlx_hook(data.win_ptr, 17, 0, close_map, &data);
 	mlx_loop(data.mlx_ptr);

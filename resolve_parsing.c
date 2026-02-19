@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 10:43:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/18 11:10:51 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/19 13:08:17 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	resolve_parsing(t_game *game, char *argv)
 		return (ft_freetab(game), 1);
 	if (check_walls(game) != 0)
 		return (ft_freetab(game), 1);
-	if (check_elements(game) != 0)
+	if (check_elements(game, 0, 0, 0) != 0)
 		return (ft_freetab(game), 1);
 	if (check_char(game) != 0)
 		return (ft_freetab(game), 1);

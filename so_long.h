@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:18:06 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/18 13:21:43 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/02/19 13:15:11 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int			count_line(char *argv);
 void		read_map(char *argv, t_game *game);
 int			is_rectangular(t_game *game);
 int			check_walls(t_game *game);
-int			check_elements(t_game *game);
+int			check_elements(t_game *game, int start_position, int x, int y);
 int			check_char(t_game *game);
 int			check_args(char *argv);
 int			check_flood(t_game *game);
@@ -89,7 +89,7 @@ int			resolve_parsing(t_game *game, char *argv);
 
 int			init_game(t_data *data);
 void		init_asset(t_data *data);
-void		put_img(t_data *data);
+void		put_img(t_data *a, int x_big, int y_big);
 int			key_hook(int key, t_data *data);
 
 // tools
