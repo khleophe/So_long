@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:00:01 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/18 13:44:25 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/04 14:03:17 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	**temporary_map(t_game *game)
 
 static void	flood_filling(t_game *game, char **temp_map, int y, int x)
 {
-	if (temp_map[y][x] == '1' || temp_map[y][x] == 'A')
+	if (temp_map[y][x] == '1' || temp_map[y][x] == 'A' || temp_map[y][x] == 'E')
 		return ;
 	temp_map[y][x] = 'A';
 	flood_filling(game, temp_map, y + 1, x);
@@ -55,7 +55,7 @@ int	check_flood(t_game *game)
 		j = 0;
 		while (j < game->width)
 		{
-			if (temp_map[i][j] == 'C' || temp_map[i][j] == 'E')
+			if (temp_map[i][j] == 'C')
 			{
 				ft_putstr("Error\n: inaccessible collectible or exit\n");
 				freetab(temp_map, game->height);

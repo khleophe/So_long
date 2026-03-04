@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 10:52:03 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/18 16:28:38 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/04 13:40:26 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ void	read_map(char *argv, t_game *game)
 
 	i = 0;
 	nb_line = count_line(argv);
+	if (nb_line == 0)
+	{
+		ft_putstr("Error\nEmpty file\n");
+		exit(0);
+	}
 	game->map = malloc(sizeof(char *) * (nb_line + 1));
 	game->height = nb_line;
 	if (!game->map)

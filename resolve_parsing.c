@@ -6,11 +6,26 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 10:43:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/19 13:08:17 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/04 14:32:19 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	check_screen(t_game *game)
+{
+	int	height;
+	int	width;
+
+	height = game->height * 60;
+	width = game->width * 60;
+	if (height > 1323 || width > 2560)
+	{
+		ft_putstr("Error\nMap too large\n");
+		return (1);
+	}
+	return (0);
+}
 
 char	**ft_freetab(t_game *game)
 {
@@ -40,6 +55,8 @@ int	resolve_parsing(t_game *game, char *argv)
 	if (check_char(game) != 0)
 		return (ft_freetab(game), 1);
 	if (check_flood(game) != 0)
+		return (ft_freetab(game), 1);
+	if (check_screen(game) != 0)
 		return (ft_freetab(game), 1);
 	return (0);
 }

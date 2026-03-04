@@ -13,7 +13,7 @@ OBJS        = $(SRCS:.c=.o)
 
 CC            = cc
 CFLAGS        = -Wall -Wextra -Werror
-NAME        = so_long
+NAME		= so_long
 
 LIBFT_DIR    = ./Libft
 LIBFT        = $(LIBFT_DIR)/libft.a
