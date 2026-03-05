@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:22:48 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/19 13:12:07 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/05 14:16:15 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	data.game.count_collect = 0;
 	if (argc != 2)
 	{
-		ft_putstr("Error\nNot the right number of arguments. It should be two\n");
+		ft_putstr("Error\nNot the right number of arguments. It should be 2\n");
 		return (1);
 	}
 	if (resolve_parsing(&data.game, argv[1]) != 0)
