@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 13:53:01 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/19 13:15:14 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/09 14:46:20 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	init_game(t_data *data)
 	if (!data->mlx_ptr)
 	{
 		ft_putstr("Error\nNo mlx pointer\n");
-		return (1);
+		ft_freetab(&data->game);
+		exit (1);
 	}
 	data->win_ptr = mlx_new_window(data->mlx_ptr, data->game.width * 60,
 			data->game.height * 60, "so_long");

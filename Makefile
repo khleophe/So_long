@@ -45,4 +45,13 @@ fclean: clean
 
 re: fclean all
 
+minilibx-linux:
+	wget https://github.com/42paris/minilibx-linux/archive/refs/heads/master.zip
+	unzip master.zip
+	mv minilibx-linux-master minilibx-linux
+	rm master.zip
+
+mlx: minilibx-linux
+	$(MAKE) -C minilibx-linux
+
 .PHONY: all clean fclean re

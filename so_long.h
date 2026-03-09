@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:18:06 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/02/19 13:15:11 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/09 16:36:43 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_data
 // map
 
 int			count_line(char *argv);
-void		read_map(char *argv, t_game *game);
+int			read_map(char *argv, t_game *game);
 int			is_rectangular(t_game *game);
 int			check_walls(t_game *game);
 int			check_elements(t_game *game, int start_position, int x, int y);
@@ -94,6 +94,7 @@ int			key_hook(int key, t_data *data);
 
 // tools
 
+char		**ft_freetab(t_game *game);
 char		**freetab(char **dest, int i);
 int			close_map(t_data *data);
 

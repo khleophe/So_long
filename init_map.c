@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 10:52:03 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/03/04 13:40:26 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/09 17:01:02 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	removed_newline(t_game *game)
 	}
 }
 
-void	read_map(char *argv, t_game *game)
+int		read_map(char *argv, t_game *game)
 {
 	int	nb_line;
 	int	fd_map;
@@ -69,15 +69,18 @@ void	read_map(char *argv, t_game *game)
 	game->map = malloc(sizeof(char *) * (nb_line + 1));
 	game->height = nb_line;
 	if (!game->map)
-		return ;
+		return (1);
 	fd_map = open(argv, O_RDONLY);
 	while (i < nb_line)
 	{
 		game->map[i] = get_next_line(fd_map);
 		i++;
 	}
+	if (ft_strnstr(game->map[i - 1], "\n", ft_strlen(game->map[i - 1])))
+		return (1);
 	game->map[i] = NULL;
 	removed_newline(game);
 	game->width = ft_strlen(game->map[0]);
 	close(fd_map);
+	return (0);
 }
