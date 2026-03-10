@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 10:52:03 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/03/09 17:01:02 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/10 14:43:21 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int	count_line(char *argv)
 	int		count_line;
 	int		fd_map;
 	char	*temp;
+	char	*tmp;
 
 	count_line = 0;
+	tmp = ft_calloc(1, 1);
 	fd_map = open(argv, O_RDONLY);
 	if (fd_map == -1)
 	{
@@ -26,15 +28,17 @@ int	count_line(char *argv)
 		exit(-1);
 	}
 	temp = get_next_line(fd_map);
+	tmp = join_tab(tmp, temp);
 	while (temp != NULL)
 	{
 		count_line++;
 		free(temp);
 		temp = get_next_line(fd_map);
+		tmp = join_tab(tmp, temp);
 	}
-	free(temp);
-	close(fd_map);
-	return (count_line);
+	if (ft_strlen(tmp) > 0 && tmp[ft_strlen(tmp) - 1] == '\n')
+		return (free(tmp), free(temp), close(fd_map), 0);
+	return (free(tmp), free(temp), close(fd_map), count_line);
 }
 
 static void	removed_newline(t_game *game)
@@ -53,7 +57,7 @@ static void	removed_newline(t_game *game)
 	}
 }
 
-int		read_map(char *argv, t_game *game)
+int	read_map(char *argv, t_game *game)
 {
 	int	nb_line;
 	int	fd_map;
@@ -76,11 +80,8 @@ int		read_map(char *argv, t_game *game)
 		game->map[i] = get_next_line(fd_map);
 		i++;
 	}
-	if (ft_strnstr(game->map[i - 1], "\n", ft_strlen(game->map[i - 1])))
-		return (1);
 	game->map[i] = NULL;
 	removed_newline(game);
 	game->width = ft_strlen(game->map[0]);
-	close(fd_map);
-	return (0);
+	return (close(fd_map), 0);
 }
