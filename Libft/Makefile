@@ -65,7 +65,7 @@ bonus: $(OBJECTS) $(OBJECTSBONUS)
 
 %.o: %.c 
 	@echo "Creating '$@' objects"
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c -g3 $< -o $@
 
 clean:
 	@echo "Removing all objects"

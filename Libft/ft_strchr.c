@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdabbas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:28:53 by sdabbas           #+#    #+#             */
-/*   Updated: 2025/11/17 15:15:05 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/12 13:56:07 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strchr(const char *str, int c)
 
 	i = 0;
 	letter = (char)c;
+	if (!str)
+		return (NULL);
 	while (str[i])
 	{
 		if (str[i] == letter)

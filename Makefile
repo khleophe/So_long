@@ -27,10 +27,10 @@ RM            = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -g3 -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I. -I$(LIBFT_DIR) -I$(MLX_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I. -I$(LIBFT_DIR) -I$(MLX_DIR) -g3 -c $< -o $@
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)

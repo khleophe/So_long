@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 10:43:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/03/09 16:37:46 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/12 11:41:46 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ char	**ft_freetab(t_game *game)
 	i = game->height - 1;
 	while (i >= 0)
 	{
-		free(game->map[i]);
+		if (game->map && game->map[i])
+			free(game->map[i]);
 		i--;
 	}
 	free(game->map);

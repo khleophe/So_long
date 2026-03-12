@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:00:01 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/03/09 14:37:05 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/12 13:57:52 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,18 @@ static char	**temporary_map(t_game *game)
 
 static void	flood_filling(t_game *game, char **temp_map, int y, int x)
 {
-	if (temp_map[y][x] == 'E')
-		temp_map[y][x] = '1';
-	if (temp_map[y][x] == '1' || temp_map[y][x] == 'A')
-		return ;
-	temp_map[y][x] = 'A';
-	flood_filling(game, temp_map, y + 1, x);
-	flood_filling(game, temp_map, y - 1, x);
-	flood_filling(game, temp_map, y, x + 1);
-	flood_filling(game, temp_map, y, x - 1);
+	if (temp_map && temp_map[y] && temp_map[y][x])
+	{
+		if (temp_map[y][x] == 'E')
+			temp_map[y][x] = '1';
+		if (temp_map[y][x] == '1' || temp_map[y][x] == 'A')
+			return ;
+		temp_map[y][x] = 'A';
+		flood_filling(game, temp_map, y + 1, x);
+		flood_filling(game, temp_map, y - 1, x);
+		flood_filling(game, temp_map, y, x + 1);
+		flood_filling(game, temp_map, y, x - 1);
+	}
 }
 
 int	check_flood(t_game *game)
@@ -57,7 +60,8 @@ int	check_flood(t_game *game)
 		j = 0;
 		while (j < game->width)
 		{
-			if (temp_map[i][j] == 'C' || temp_map[i][j] == 'E')
+			if (temp_map && temp_map[i] && (temp_map[i][j] == 'C'
+				|| temp_map[i][j] == 'E'))
 			{
 				ft_putstr("Error\n: inaccessible collectible or exit\n");
 				freetab(temp_map, game->height);

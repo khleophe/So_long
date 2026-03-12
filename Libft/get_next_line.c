@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:48:54 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/03/10 14:44:32 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/12 13:58:22 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ static char	*read_fd(int fd, char *mid_tab)
 			free(mid_tab);
 			return (NULL);
 		}
-		temp[read_return] = '\0';
-		mid_tab = join_tab(mid_tab, temp);
+		if (read_return)
+			temp[read_return] = '\0';
+		if (temp)
+			mid_tab = join_tab(mid_tab, temp);
 	}
 	free(temp);
 	return (mid_tab);
@@ -45,18 +47,20 @@ static char	*return_line(char *mid_tab)
 	int		i;
 
 	i = 0;
-	if (mid_tab[i] == '\0')
+	if (!mid_tab[i])
 		return (NULL);
 	while (mid_tab[i] != '\n' && mid_tab[i])
 		i++;
-	line = ft_calloc(sizeof (char), i + 2);
+	line = ft_calloc(sizeof(char), i + 2);
+	if (!line)
+		return (NULL);
 	i = 0;
 	while (mid_tab[i] != '\n' && mid_tab[i])
 	{
 		line[i] = mid_tab[i];
 		i++;
 	}
-	if (mid_tab[i] == '\n' && mid_tab[i])
+	if (mid_tab && line && mid_tab[i] == '\n' && mid_tab[i])
 	{
 		line[i] = '\n';
 		i++;
@@ -65,27 +69,30 @@ static char	*return_line(char *mid_tab)
 	return (line);
 }
 
-static char	*next_line(char	*mid_tab)
+static char	*next_line(char *mid_tab)
 {
 	int		i;
 	int		j;
 	char	*next_temp;
 
 	i = 0;
+	if (!mid_tab)
+		return (NULL);
 	while (mid_tab[i] != '\n' && mid_tab[i])
 		i++;
 	if (mid_tab[i] == '\0')
-	{
-		free(mid_tab);
-		return (NULL);
-	}
+		return (free(mid_tab), NULL);
 	next_temp = ft_calloc(sizeof(char), ft_strlen(&mid_tab[i]) + 1);
+	if (!next_temp)
+		return (free(mid_tab), NULL);
 	i++;
 	j = 0;
-	while (mid_tab[i])
-		next_temp[j++] = mid_tab[i++];
+	if (mid_tab && next_temp)
+	{
+		while (mid_tab[i] && next_temp)
+			next_temp[j++] = mid_tab[i++];
+	}
 	next_temp[j] = '\0';
-	free(mid_tab);
 	return (next_temp);
 }
 

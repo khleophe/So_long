@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdabbas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 13:56:47 by sdabbas           #+#    #+#             */
-/*   Updated: 2025/11/13 17:12:42 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/12 11:33:02 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,20 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!new)
 		return (NULL);
 	i = 0;
-	while (s1[i])
+	if (s1 && s2)
 	{
-		new[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j])
-	{
-		new[i] = s2[j];
-		i++;
-		j++;
+		while (s1[i])
+		{
+			new[i] = s1[i];
+			i++;
+		}
+		j = 0;
+		while (s2[j])
+		{
+			new[i] = s2[j];
+			i++;
+			j++;
+		}
 	}
 	new[i] = '\0';
 	return (new);
