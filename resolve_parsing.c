@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 10:43:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/03/12 14:12:59 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/12 15:26:08 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	resolve_parsing(t_game *game, char *argv)
 		return (1);
 	if (read_map(argv, game) != 0)
 		return (ft_freetab(game), 1);
+	if (game->height < 3)
+		return (ft_putstr("Error\nMap is too small\n"), ft_freetab(game), 1);
 	if (is_rectangular(game) != 0)
 		return (ft_freetab(game), 1);
 	if (check_walls(game) != 0)
