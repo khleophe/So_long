@@ -3,192 +3,115 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdabbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/03 13:48:54 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/03/12 13:58:22 by sdabbas          ###   ########.fr       */
+/*   Created: 2026/03/12 13:31:11 by sdabbas           #+#    #+#             */
+/*   Updated: 2026/03/12 13:34:15 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#define BUFFER_SIZE 1000
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 11
+#endif
 
-static char	*read_fd(int fd, char *mid_tab)
+static char	*renew(char *buffer, char *retu)
 {
 	char	*temp;
-	int		read_return;
 
-	read_return = 1;
-	if (mid_tab == NULL)
-		mid_tab = ft_calloc(1, 1);
-	temp = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
-	while (!ft_strchr(temp, '\n') && read_return > 0)
-	{
-		read_return = read(fd, temp, BUFFER_SIZE);
-		if (read_return == -1)
-		{
-			free(temp);
-			free(mid_tab);
-			return (NULL);
-		}
-		if (read_return)
-			temp[read_return] = '\0';
-		if (temp)
-			mid_tab = join_tab(mid_tab, temp);
-	}
-	free(temp);
-	return (mid_tab);
+	return (temp = ft_strjoin(retu, buffer), free(retu), temp);
 }
 
-static char	*return_line(char *mid_tab)
+static char	*line(char *buffer)
 {
-	char	*line;
+	char	*retu;
 	int		i;
 
 	i = 0;
-	if (!mid_tab[i])
+	if (!buffer[i])
 		return (NULL);
-	while (mid_tab[i] != '\n' && mid_tab[i])
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	line = ft_calloc(sizeof(char), i + 2);
-	if (!line)
+	retu = ft_calloc(sizeof(char), i + 2);
+	if (!retu)
 		return (NULL);
 	i = 0;
-	while (mid_tab[i] != '\n' && mid_tab[i])
+	while (buffer[i] && buffer[i] != '\n')
 	{
-		line[i] = mid_tab[i];
+		retu[i] = buffer[i];
 		i++;
 	}
-	if (mid_tab && line && mid_tab[i] == '\n' && mid_tab[i])
-	{
-		line[i] = '\n';
-		i++;
-	}
-	line[i] = '\0';
-	return (line);
+	if (buffer[i] && buffer[i] == '\n')
+		retu[i++] = '\n';
+	return (retu[i] = '\0', retu);
 }
 
-static char	*next_line(char *mid_tab)
+static char	*next_line(char	*buffer)
 {
+	char	*retu;
 	int		i;
 	int		j;
-	char	*next_temp;
 
 	i = 0;
-	if (!mid_tab)
-		return (NULL);
-	while (mid_tab[i] != '\n' && mid_tab[i])
-		i++;
-	if (mid_tab[i] == '\0')
-		return (free(mid_tab), NULL);
-	next_temp = ft_calloc(sizeof(char), ft_strlen(&mid_tab[i]) + 1);
-	if (!next_temp)
-		return (free(mid_tab), NULL);
-	i++;
 	j = 0;
-	if (mid_tab && next_temp)
+	if (!buffer)
+		return (NULL);
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (!buffer[i])
+		return (free(buffer), NULL);
+	retu = ft_calloc(sizeof(char), ft_strlen(buffer) - i + 1);
+	if (!retu)
+		return (free(buffer), NULL);
+	i++;
+	while (buffer[i])
+		retu[j++] = buffer[i++];
+	return (retu[j] = '\0', free(buffer), retu);
+}
+
+static char	*read_file(char *retu, int fd)
+{
+	char	*buffer;
+	int		nb_read;
+
+	nb_read = 1;
+	if (!retu)
+		retu = ft_calloc(1, 1);
+	buffer = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
+	while (nb_read > 0)
 	{
-		while (mid_tab[i] && next_temp)
-			next_temp[j++] = mid_tab[i++];
+		nb_read = read(fd, buffer, BUFFER_SIZE);
+		if (nb_read == -1)
+			return (free(buffer), free(retu), NULL);
+		buffer[nb_read] = 0;
+		retu = renew(buffer, retu);
+		if (!retu)
+			return (NULL);
+		if (ft_strchr(buffer, '\n'))
+			break ;
 	}
-	next_temp[j] = '\0';
-	return (next_temp);
+	return (free(buffer), retu);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*retour;
-	static char	*queen_tab[1024];
+	static char	*buffer[1024];
+	char		*retu;
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, 0, 0))
-	{
-		free(queen_tab[fd]);
-		queen_tab[fd] = NULL;
-		return (NULL);
-	}
-	queen_tab[fd] = read_fd(fd, queen_tab[fd]);
-	if (queen_tab[fd] == NULL)
-	{
-		free(queen_tab[fd]);
-		return (NULL);
-	}
-	retour = return_line(queen_tab[fd]);
-	queen_tab[fd] = next_line(queen_tab[fd]);
-	return (retour);
+	if ((fd < 0 && BUFFER_SIZE <= 0) || read(fd, 0, 0) < 0)
+		return (free(buffer[fd]), buffer[fd] = NULL, NULL);
+	buffer[fd] = read_file(buffer[fd], fd);
+	if (!buffer[fd])
+		return (free(buffer[fd]), buffer[fd] = NULL, NULL);
+	retu = line(buffer[fd]);
+	if (!retu)
+		return (free(buffer[fd]), buffer[fd] = NULL, NULL);
+	buffer[fd] = next_line(buffer[fd]);
+	if (!buffer[fd])
+		return (free(buffer[fd]), buffer[fd] = NULL, retu);
+	return (retu);
 }
 
-/*int	main(void)
-{
-	int	fd;
-	char	*temp;
-
-	fd = open("v.txt", O_RDONLY);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	temp = get_next_line(fd);
-	printf("%s", temp);
-	free(temp);
-	return (0);
-}*/

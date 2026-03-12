@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 14:21:17 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/03/12 13:47:46 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/12 14:22:00 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_walls(t_game *game)
 	int	i;
 
 	i = 0;
-	if (!game->map || !game->map[i] || !game->width - 1)
+	if (!game->map || !game->map[0] || !(game->width - 1) || !(game->height - 1))
 		return (1);
 	while (i < game->width - 1)
 	{
@@ -51,7 +51,7 @@ int	check_walls(t_game *game)
 	i = 0;
 	while (i < game->height)
 	{
-		if (game->map[i][0] != '1' || game->map[i][game->width - 1] != '1')
+		if (game->map[i] && (game->map[i][0] != '1' || game->map[i][game->width - 1] != '1'))
 		{
 			ft_putstr("Error\nMap must be enclosed by walls\n");
 			return (1);
