@@ -6,7 +6,7 @@
 /*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 10:52:03 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/03/10 14:43:21 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/12 11:02:54 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	read_map(char *argv, t_game *game)
 	nb_line = count_line(argv);
 	if (nb_line == 0)
 	{
-		ft_putstr("Error\nEmpty file\n");
+		ft_putstr("Error\nEmpty file or line\n");
 		exit(0);
 	}
 	game->map = malloc(sizeof(char *) * (nb_line + 1));
