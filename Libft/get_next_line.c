@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdabbas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sdabbas <sdabbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 13:31:11 by sdabbas           #+#    #+#             */
-/*   Updated: 2026/03/12 13:34:15 by sdabbas          ###   ########.fr       */
+/*   Updated: 2026/03/12 14:34:32 by sdabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,3 @@ char	*get_next_line(int fd)
 		return (free(buffer[fd]), buffer[fd] = NULL, retu);
 	return (retu);
 }
-
